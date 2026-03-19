@@ -1,0 +1,319 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .rsf-page { font-family: 'Lato', sans-serif; background: #0c1a2e; color: #e8edf5; min-height: 100vh; overflow-x: hidden; }
+  .hero { position: relative; padding: 4rem 2rem 3.5rem; text-align: center; background: linear-gradient(160deg, #0c1a2e 0%, #102340 50%, #0f2a1c 100%); border-bottom: 1px solid rgba(45,180,120,0.25); overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(29,158,117,0.10) 0%, transparent 70%); pointer-events: none; }
+  .molecule-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.06; pointer-events: none; }
+  .badge { display: inline-block; background: rgba(29,158,117,0.18); border: 1px solid rgba(29,158,117,0.5); color: #5DCAA5; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 18px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; line-height: 1.2; color: #f0f4fa; margin-bottom: 0.6rem; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 span { color: #5DCAA5; }
+  .hero-subtitle { font-size: 1.1rem; font-weight: 300; color: #9ab0c8; margin-bottom: 2rem; letter-spacing: 0.5px; }
+
+  .event-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+  .meta-item { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 10px 18px; }
+  .meta-icon { width: 18px; height: 18px; color: #5DCAA5; flex-shrink: 0; }
+  .meta-label { font-size: 11px; color: #7a96b4; text-transform: uppercase; letter-spacing: 1px; display: block; line-height: 1.2; }
+  .meta-value { font-size: 13.5px; font-weight: 700; color: #dce8f5; display: block; line-height: 1.3; }
+
+  .countdown-wrap { display: flex; justify-content: center; margin-bottom: 2.2rem; }
+  .countdown { display: flex; align-items: stretch; gap: 0; background: rgba(0,0,0,0.3); border: 1px solid rgba(29,158,117,0.35); border-radius: 12px; overflow: hidden; }
+  .cd-block { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 22px; min-width: 80px; }
+  .cd-block + .cd-block { border-left: 0.5px solid rgba(255,255,255,0.08); }
+  .cd-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #5DCAA5; line-height: 1; letter-spacing: -1px; }
+  .cd-label { font-size: 10px; color: #7a96b4; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+  .cd-sep { display: flex; align-items: center; padding: 0 2px; font-size: 1.4rem; color: rgba(93,202,165,0.3); font-weight: 300; }
+
+  .cta-btn { display: inline-block; background: #1D9E75; color: #fff; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; padding: 13px 34px; border-radius: 6px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .cta-btn:hover { background: #5DCAA5; color: #0c1a2e; }
+
+  .section { max-width: 900px; margin: 0 auto; padding: 2.8rem 2rem; }
+  .section-label { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: #5DCAA5; font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 600; color: #f0f4fa; margin-bottom: 1.1rem; }
+  .section p { font-size: 15px; line-height: 1.8; color: #9ab0c8; max-width: 740px; }
+  .divider { border: none; border-top: 0.5px solid rgba(255,255,255,0.08); }
+
+  .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .theme-card { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(29,158,117,0.2); border-radius: 10px; padding: 1.2rem 1.4rem; }
+  .theme-card h3 { font-size: 14px; font-weight: 700; color: #dce8f5; margin-bottom: 6px; }
+  .theme-card p { font-size: 13px; color: #7a96b4; line-height: 1.6; max-width: none; }
+
+  .speakers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 1.5rem; }
+  .speaker-card { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
+  .speaker-card:hover { border-color: rgba(29,158,117,0.4); }
+  .speaker-photo-wrap { width: 100%; height: 200px; overflow: hidden; background: rgba(29,158,117,0.08); display: flex; align-items: center; justify-content: center; }
+  .speaker-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .avatar-circle { width: 100px; height: 100px; border-radius: 50%; background: rgba(29,158,117,0.12); border: 2px dashed rgba(93,202,165,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .avatar-circle .initials { font-size: 28px; font-weight: 700; color: #5DCAA5; line-height: 1; }
+  .avatar-circle .avatar-hint { font-size: 9px; color: #4a6880; letter-spacing: 0.8px; text-transform: uppercase; }
+  .speaker-body { padding: 1.2rem 1.4rem 1.4rem; }
+  .speaker-name { font-size: 15px; font-weight: 700; color: #f0f4fa; margin-bottom: 4px; line-height: 1.3; }
+  .speaker-role { font-size: 12.5px; color: #5DCAA5; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+  .speaker-affil { font-size: 12px; color: #7a96b4; line-height: 1.65; }
+  .speaker-affil .inst { font-weight: 700; color: #9ab0c8; }
+  .speaker-tag { display: inline-block; margin-top: 10px; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: #4a6880; background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 3px 8px; }
+
+  .organizer-section { background: rgba(29,158,117,0.05); border-top: 0.5px solid rgba(29,158,117,0.2); border-bottom: 0.5px solid rgba(29,158,117,0.2); }
+  .organizer-card { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; }
+  .organizer-photo { width: 140px; height: 170px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(29,158,117,0.3); }
+  .organizer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .organizer-info { flex: 1; min-width: 240px; }
+  .organizer-name { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #f0f4fa; margin-bottom: 4px; }
+  .organizer-title { font-size: 13px; color: #5DCAA5; font-weight: 700; margin-bottom: 10px; line-height: 1.5; }
+  .organizer-dept { font-size: 13px; color: #7a96b4; line-height: 1.7; margin-bottom: 14px; }
+  .organizer-dept .inst { font-weight: 700; color: #9ab0c8; }
+  .organizer-bio { font-size: 14px; color: #8aa4be; line-height: 1.8; max-width: 680px; margin-bottom: 16px; }
+  .research-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rtag { font-size: 11.5px; background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.3); color: #5DCAA5; border-radius: 4px; padding: 4px 10px; }
+  .lab-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #5DCAA5; text-decoration: none; border-bottom: 0.5px solid rgba(93,202,165,0.35); padding-bottom: 1px; margin-top: 14px; }
+  .lab-link:hover { color: #9ab0c8; }
+
+  .footer { background: #080f1c; border-top: 0.5px solid rgba(255,255,255,0.07); padding: 2rem; text-align: center; }
+  .footer p { font-size: 13px; color: #4a6880; line-height: 1.7; }
+  .footer strong { color: #7a96b4; font-weight: 700; }
+  .rsf-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #5DCAA5; letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(8,15,28,0.9); border-bottom: 0.5px solid rgba(255,255,255,0.07); position: sticky; top: 0; z-index: 10; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #5DCAA5; letter-spacing: 1px; }
+  .nav-tag { font-size: 11px; color: #4a6880; letter-spacing: 1.5px; text-transform: uppercase; }
+</style>
+
+<div class="rsf-page">
+  <nav class="nav">
+    <span class="nav-logo">RSF 2026</span>
+    <span class="nav-tag">Inaugural Meeting — July 09, 2026</span>
+  </nav>
+
+  <div class="hero">
+    <svg class="molecule-bg" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="80" r="30" fill="none" stroke="#5DCAA5" stroke-width="1"/>
+      <circle cx="200" cy="80" r="12" fill="none" stroke="#5DCAA5" stroke-width="1"/>
+      <line x1="150" y1="80" x2="188" y2="80" stroke="#5DCAA5" stroke-width="1"/>
+      <circle cx="780" cy="380" r="25" fill="none" stroke="#5DCAA5" stroke-width="1"/>
+      <circle cx="840" cy="340" r="10" fill="none" stroke="#5DCAA5" stroke-width="1"/>
+      <line x1="805" y1="365" x2="833" y2="350" stroke="#5DCAA5" stroke-width="1"/>
+      <circle cx="700" cy="100" r="20" fill="none" stroke="#5DCAA5" stroke-width="0.8"/>
+      <circle cx="750" cy="120" r="10" fill="none" stroke="#5DCAA5" stroke-width="0.8"/>
+      <line x1="720" y1="108" x2="742" y2="116" stroke="#5DCAA5" stroke-width="0.8"/>
+      <circle cx="150" cy="400" r="18" fill="none" stroke="#5DCAA5" stroke-width="0.8"/>
+      <circle cx="190" cy="430" r="9" fill="none" stroke="#5DCAA5" stroke-width="0.8"/>
+      <line x1="168" y1="412" x2="183" y2="422" stroke="#5DCAA5" stroke-width="0.8"/>
+    </svg>
+
+    <div class="badge">Inaugural Forum — 2026</div>
+    <h1>Reductive Stress Mechanisms<br>in <span>Chronic Diseases</span></h1>
+    <p class="hero-subtitle">Reductive Stress Forum (RSF) Symposium</p>
+
+    <div class="event-meta">
+      <div class="meta-item">
+        <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div><span class="meta-label">Date</span><span class="meta-value">Thursday, July 09, 2026</span></div>
+      </div>
+      <div class="meta-item">
+        <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><span class="meta-label">Venue</span><span class="meta-value">Marnix E. Heersink Conference Center</span></div>
+      </div>
+      <div class="meta-item">
+        <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div><span class="meta-label">Host</span><span class="meta-value">UAB, Birmingham, Alabama</span></div>
+      </div>
+    </div>
+
+    <div class="countdown-wrap">
+      <div class="countdown">
+        <div class="cd-block">
+          <span class="cd-num" id="cd-days">--</span>
+          <span class="cd-label">Days</span>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <span class="cd-num" id="cd-hours">--</span>
+          <span class="cd-label">Hours</span>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <span class="cd-num" id="cd-mins">--</span>
+          <span class="cd-label">Minutes</span>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <span class="cd-num" id="cd-secs">--</span>
+          <span class="cd-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="cta-btn">Learn More</a>
+  </div>
+
+  <div id="about">
+    <div class="section">
+      <p class="section-label">About the forum</p>
+      <h2>A new scientific community around reductive stress</h2>
+      <p>The Reductive Stress Forum brings together leading scientists from diverse disciplines to advance our collective understanding of reductive stress biology and its implications for human health. This inaugural meeting marks the establishment of a dedicated platform for rigorous scientific exchange on a fundamentally underexplored dimension of redox biology.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <p class="section-label">Scientific focus</p>
+      <h2>Symposium themes</h2>
+      <div class="themes-grid">
+        <div class="theme-card"><h3>Reductive stress mechanisms</h3><p>Cellular and molecular drivers of reductive stress states, including NAD(P)H accumulation, GSH/GSSG imbalance, and antioxidant pathway dysregulation.</p></div>
+        <div class="theme-card"><h3>Chronic disease intersections</h3><p>Role of reductive stress in cardiometabolic disorders, neurodegeneration, cancer biology, and aging-related pathologies.</p></div>
+        <div class="theme-card"><h3>Multi-omics and redox profiling</h3><p>Proteomics, metabolomics, and transcriptomics approaches for identifying reductive stress signatures in animal models and clinical cohorts.</p></div>
+        <div class="theme-card"><h3>Molecular adaptations</h3><p>Protein modifications, signaling pathway rewiring, and gene expression changes that define adaptive and maladaptive responses to reductive stress.</p></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <p class="section-label">Speakers</p>
+      <h2>Invited speakers</h2>
+      <div class="speakers-grid">
+
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <img src="https://images.squarespace-cdn.com/content/v1/5b87f41c7e3c3a634e43cba8/ca6033a6-e321-4b53-905c-8459311e6a0a/Headshot_Maolin.jpg?format=1000w" alt="Maolin Ge" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>MG</span><span class=\'avatar-hint\'>add photo</span></div>'">
+          </div>
+          <div class="speaker-body">
+            <div class="speaker-name">Maolin Ge, PhD</div>
+            <div class="speaker-role">Instructor in Medicine</div>
+            <div class="speaker-affil">
+              <span class="inst">Krantz Family Center for Cancer Research</span><br>
+              Massachusetts General Hospital &middot; Harvard Medical School<br>
+              <span style="color:#5DCAA5; font-size:11.5px;">Dr. Liron Bar-Peled Lab</span>
+            </div>
+            <span class="speaker-tag">Cancer Biology &amp; Chemical Biology</span>
+          </div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <img src="https://www.c3clinic.in/assests/images/d1.jpg" alt="Vinod Kumar B" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>VK</span><span class=\'avatar-hint\'>add photo</span></div>'">
+          </div>
+          <div class="speaker-body">
+            <div class="speaker-name">Vinod Kumar B, MD, DM</div>
+            <div class="speaker-role">Sr. Consultant Interventional Cardiologist</div>
+            <div class="speaker-affil">
+              Fellowship in Intravascular Imaging (South Korea)<br>
+              FESC &middot; FSCAI &middot; FACC<br>
+              Associate Professor &amp; Program Coordinator, Allied Health Sciences<br>
+              <span class="inst">Dept. of Cardiology, SRIHER</span> &middot; Chennai, India<br>
+              <span style="color:#5DCAA5; font-size:11.5px;">Managing Trustee, C3 Research Foundation &middot; MD, Chennai Cardiac Care</span>
+            </div>
+            <span class="speaker-tag">Interventional Cardiology</span>
+          </div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <div class="avatar-circle">
+              <span class="initials">CK</span>
+              <span class="avatar-hint">add photo</span>
+            </div>
+          </div>
+          <div class="speaker-body">
+            <div class="speaker-name">Chris Kevil, PhD</div>
+            <div class="speaker-role">Malcolm Feist Endowed Chair, Cardiovascular Disease</div>
+            <div class="speaker-affil">
+              F-AAAS &middot; F-SfRBM &middot; F-CVS<br>
+              Co-Editor in Chief, <em>Redox Biology</em><br>
+              Director/PI, Center for Redox Biology and Cardiovascular Disease<br>
+              Professor, Pathology &amp; Translational Pathobiology; Molecular &amp; Cellular Physiology; Cell Biology &amp; Anatomy<br>
+              <span class="inst">LSU Health Shreveport</span>
+            </div>
+            <span class="speaker-tag">Redox Biology &amp; Cardiovascular</span>
+          </div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <img src="https://www.mskcc.org/sites/default/files/styles/width_400_1x1/public/node/109339/person/bachovchin_17_0.webp" alt="Daniel Bachovchin" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>DB</span><span class=\'avatar-hint\'>add photo</span></div>'">
+          </div>
+          <div class="speaker-body">
+            <div class="speaker-name">Daniel A. Bachovchin, PhD</div>
+            <div class="speaker-role">Chemical Biology Program</div>
+            <div class="speaker-affil">
+              Geoffrey Beene Junior Faculty Chair<br>
+              <span class="inst">Memorial Sloan Kettering Cancer Center</span><br>
+              1275 York Ave, Box 428 &middot; New York, NY 10065
+            </div>
+            <span class="speaker-tag">Chemical Biology</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="organizer-section">
+    <div class="section">
+      <p class="section-label">Forum organizer</p>
+      <h2>About the founder</h2>
+      <div class="organizer-card">
+        <div class="organizer-photo">
+          <img src="https://sites.uab.edu/nsrajalab/files/2023/01/IMG_24631-697x1024.jpg" alt="Rajasekaran Namakkal-Soorappan" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(29,158,117,0.15);border-radius:10px;\'><span style=\'font-size:28px;font-weight:700;color:#5DCAA5;\'>RN</span><span style=\'font-size:9px;color:#4a6880;letter-spacing:1px;text-transform:uppercase;\'>add photo</span></div>'">
+        </div>
+        <div class="organizer-info">
+          <div class="organizer-name">Rajasekaran Namakkal-Soorappan, PhD</div>
+          <div class="organizer-title">Associate Professor &amp; Founder, Reductive Stress Forum</div>
+          <div class="organizer-dept">
+            Cardiac Aging and Redox Signaling Laboratory<br>
+            Center for Free Radical Biology<br>
+            Division of Molecular and Cellular Pathology<br>
+            <span class="inst">Department of Pathology, University of Alabama at Birmingham</span><br>
+            Adjunct Faculty, Division of Cardiovascular Medicine, University of Utah
+          </div>
+          <div class="organizer-bio">
+            Dr. Namakkal-Soorappan is a leading authority on reductive stress biology, widely recognized for establishing reductive stress as a distinct and clinically significant arm of the redox spectrum. His laboratory investigates how excess reducing equivalents — driven by overactivation of the Nrf2/antioxidant defense axis — cause proteotoxic cardiomyopathy, diastolic dysfunction, impaired myogenesis, and neurodegeneration. His work has fundamentally challenged the assumption that antioxidants are unconditionally beneficial, opening new avenues toward precision redox modulation therapy. He convened the landmark <em>Antioxidants &amp; Redox Signaling</em> forum issue "Reductive Stress: Neglected Science," which catalyzed field-wide attention to this underexplored biology.
+          </div>
+          <div class="research-tags">
+            <span class="rtag">Reductive stress</span>
+            <span class="rtag">Nrf2/ARE signaling</span>
+            <span class="rtag">Cardiac redox biology</span>
+            <span class="rtag">Proteotoxic cardiomyopathy</span>
+            <span class="rtag">Redox &amp; neurodegeneration</span>
+            <span class="rtag">Multi-omics &amp; proteomics</span>
+          </div>
+          <a href="https://sites.uab.edu/nsrajalab/" class="lab-link" target="_blank">NS Raja Lab, UAB &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="rsf-logo">Reductive Stress Forum</span>
+    <p>Inaugural Symposium &mdash; July 09, 2026</p>
+    <p style="margin-top:8px;"><strong>Marnix E. Heersink Conference Center</strong> &mdash; University of Alabama at Birmingham, Birmingham, Alabama</p>
+    <p style="margin-top:1rem; font-size:12px; color:#2e4560;">For inquiries, please contact the RSF organizing committee.</p>
+  </div>
+</div>
+
+<script>
+  function updateCountdown() {
+    var target = new Date('2026-07-09T08:00:00');
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent = '00';
+      document.getElementById('cd-secs').textContent = '00';
+      return;
+    }
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var secs = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
