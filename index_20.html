@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSF 2026 — Reductive Stress Forum · UAB</title>
+
+<!--
+  UAB Medicine Brand Colors (uab.edu/brandguide/uab-medicine/colors)
+  Primary:   UAB Green         #1a5632
+  Secondary: Healing Teal      #007580
+  Accent:    Trust Teal        #68C6B8
+             Campus Green      #90D408
+             Bham Blue Sky     #42CAF0
+             Evergreen         #17B045
+             Dragon's Lair     #033319
+  Neutral:   Warm White        #F4F0EB  Black #000000
+
+  UAB Medicine Fonts (uab.edu/brandguide/uab-medicine/fonts)
+  Primary: Aktiv Grotesk → web substitute: Arial, system sans-serif
+-->
+
+<style>
+  /* ── BRAND TOKENS ─────────────────────────────── */
+  :root {
+    --green:          #1a5632;   /* UAB Green – primary */
+    --green-dark:     #033319;   /* Dragon's Lair */
+    --green-mid:      #17B045;   /* Ever Loyal Evergreen */
+    --teal:           #007580;   /* Healing Teal – secondary */
+    --teal-light:     #68C6B8;   /* Trust Teal – accent */
+    --sky:            #42CAF0;   /* Bham Blue Sky */
+    --campus:         #90D408;   /* Campus Green */
+    --warm-white:     #F4F0EB;   /* Neutral warm */
+    --off-white:      #f8f9f6;
+    --body-bg:        #f5f7f5;
+    --text-dark:      #0a1a10;
+    --text-mid:       #2c4a35;
+    --text-muted:     #5a7a63;
+    --border:         rgba(26,86,50,0.15);
+    --border-teal:    rgba(0,117,128,0.2);
+    --shadow:         0 2px 16px rgba(26,86,50,0.10);
+
+    /* Typography — Aktiv Grotesk → Arial substitute */
+    --font:           'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--body-bg);
+    color: var(--text-dark);
+    padding-top: 75px; /* offset for fixed nav */
+  }
+
+  /* ── FIXED NAV ────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 72px;
+    background: #ffffff;
+    border-bottom: 4px solid var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 200;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* UAB Medicine logo lockup */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-img-wrap {
+    height: 46px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-logo-img-wrap img {
+    height: 46px;
+    width: auto;
+    display: block;
+  }
+
+  /* Fallback shown until uabmedlogo.png is uploaded */
+  .nav-logo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1px;
+    border: 1.5px dashed rgba(26,86,50,0.35);
+    border-radius: 3px;
+    padding: 5px 12px 5px 8px;
+    height: 46px;
+    white-space: nowrap;
+  }
+
+  .nav-logo-placeholder .logo-uab {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .nav-logo-placeholder .logo-med {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .nav-logo-placeholder .logo-sub {
+    font-size: 0.48rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    line-height: 1;
+    margin-top: 3px;
+  }
+
+  .nav-divider {
+    width: 1px;
+    height: 34px;
+    background: rgba(26,86,50,0.2);
+    flex-shrink: 0;
+  }
+
+  .nav-rsf-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-rsf-title .rsf-abbr {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .nav-rsf-title .rsf-year {
+    font-size: 0.62rem;
+    color: var(--green);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-reg {
+    background: var(--green) !important;
+    color: #fff !important;
+    padding: 7px 18px;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    letter-spacing: 1px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-reg:hover { background: var(--teal) !important; color: #fff !important; }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(155deg, var(--green-dark) 0%, var(--green) 55%, #0d4025 100%);
+    padding: 4.5rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--teal);
+  }
+
+  /* Subtle grid lines — UAB architectural nod */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(104,198,184,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(104,198,184,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -100px; top: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(104,198,184,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(104,198,184,0.15);
+    border: 1px solid rgba(104,198,184,0.4);
+    color: var(--teal-light);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--teal-light);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2.2rem;
+    letter-spacing: 0.3px;
+  }
+
+  /* Event metadata strip */
+  .event-strip {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    padding: 9px 16px;
+  }
+
+  .strip-icon {
+    width: 16px; height: 16px;
+    color: var(--teal-light);
+    flex-shrink: 0;
+  }
+
+  .strip-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    display: block;
+  }
+
+  .strip-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+  }
+
+  /* Countdown */
+  .countdown-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.2rem;
+  }
+
+  .countdown {
+    display: inline-flex;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(104,198,184,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 24px;
+    min-width: 80px;
+  }
+
+  .cd-unit + .cd-unit {
+    border-left: 0.5px solid rgba(255,255,255,0.1);
+  }
+
+  .cd-num {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--teal-light);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .cd-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  .cd-sep {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    color: rgba(104,198,184,0.3);
+    padding: 0 2px;
+  }
+
+  /* CTA buttons */
+  .hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 13px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: 2px solid var(--teal);
+  }
+
+  .btn-primary:hover { background: var(--teal-light); border-color: var(--teal-light); color: var(--green-dark); }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--teal-light);
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 11px 30px;
+    border-radius: 3px;
+    border: 2px solid rgba(104,198,184,0.5);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: rgba(104,198,184,0.12); border-color: var(--teal-light); }
+
+  /* ── PAGE SECTIONS ────────────────────────────── */
+  .section {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .sec-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .sec-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .sec-body {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 720px;
+  }
+
+  .page-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── THEMES GRID ──────────────────────────────── */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    margin-top: 1.6rem;
+  }
+
+  .theme-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--teal);
+    border-radius: 2px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--shadow);
+  }
+
+  .theme-card h3 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 5px;
+  }
+
+  .theme-card p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── AGENDA ───────────────────────────────────── */
+  .agenda-bg {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .agenda-wrap { margin-top: 1.6rem; }
+
+  .session-block { margin-bottom: 2rem; }
+
+  .session-hdr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .session-pill {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--green);
+    color: #fff;
+    padding: 4px 13px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .session-mod {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .agenda-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .agenda-row:last-child { border-bottom: none; }
+
+  .agenda-time {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--teal);
+    min-width: 130px;
+    white-space: nowrap;
+    padding-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .agenda-content { flex: 1; }
+
+  .agenda-event {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+
+  .agenda-speaker {
+    font-size: 12.5px;
+    color: var(--text-mid);
+    margin-top: 2px;
+  }
+
+  .agenda-talk {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .agenda-note {
+    font-size: 11px;
+    color: var(--teal);
+    margin-top: 3px;
+    font-weight: 700;
+  }
+
+  .agenda-row.break .agenda-event { color: var(--text-muted); font-weight: 400; }
+
+  /* ── FEATURED SESSION (Session IV) ───────────── */
+  .featured-block {
+    background: #fff;
+    border: 1.5px solid var(--teal);
+    border-left: 5px solid var(--green);
+    border-radius: 2px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+
+  .feat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--green);
+    color: #fff;
+    padding: 5px 13px;
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+  }
+
+  .feat-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 2px;
+  }
+
+  .feat-time {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1.3rem;
+  }
+
+  .faculty-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .faculty-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+
+  .faculty-item:hover { border-color: var(--teal); }
+
+  .fac-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--teal);
+    white-space: nowrap;
+    min-width: 105px;
+    padding-top: 2px;
+  }
+
+  .fac-details { flex: 1; }
+  .fac-name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+  .fac-inst { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+  .fac-talk { font-size: 12px; color: var(--teal); font-style: italic; margin-top: 5px; line-height: 1.5; }
+  .fac-sponsor { font-size: 10.5px; color: var(--green); font-weight: 700; margin-top: 4px; }
+
+  /* ── REGISTRATION BANNER ──────────────────────── */
+  .reg-banner {
+    background: var(--green);
+    border-top: 3px solid var(--teal);
+  }
+
+  .reg-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .reg-text h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+
+  .reg-text p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  .reg-btn {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid var(--teal);
+    transition: all 0.2s;
+  }
+
+  .reg-btn:hover { background: var(--teal-light); border-color: var(--teal-light); color: var(--green-dark); }
+
+  /* ── SPEAKERS ─────────────────────────────────── */
+  .speakers-bg {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.6rem;
+  }
+
+  .spk-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .spk-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 20px rgba(0,117,128,0.12);
+  }
+
+  .spk-photo-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spk-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .avatar-circle {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(104,198,184,0.15);
+    border: 2px dashed rgba(104,198,184,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .avatar-circle .initials {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--teal-light);
+    line-height: 1;
+  }
+
+  .avatar-circle .av-hint {
+    font-size: 8px;
+    color: rgba(104,198,184,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .spk-body { padding: 1.1rem 1.3rem 1.3rem; }
+  .spk-name { font-size: 14.5px; font-weight: 700; color: var(--green); margin-bottom: 3px; line-height: 1.3; }
+  .spk-role { font-size: 12px; color: var(--teal); font-weight: 700; margin-bottom: 7px; line-height: 1.4; }
+  .spk-affil { font-size: 11.5px; color: var(--text-muted); line-height: 1.65; }
+  .spk-affil .inst { font-weight: 700; color: var(--text-mid); }
+
+  .spk-tag {
+    display: inline-block;
+    margin-top: 9px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: rgba(0,117,128,0.08);
+    border: 0.5px solid rgba(0,117,128,0.25);
+    border-radius: 2px;
+    padding: 3px 8px;
+  }
+
+  /* ── ORGANIZER ────────────────────────────────── */
+  .organizer-bg {
+    background: var(--green);
+    border-top: 3px solid var(--teal-light);
+  }
+
+  .organizer-card {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .org-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--teal-light);
+  }
+
+  .org-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .org-info { flex: 1; min-width: 240px; }
+
+  .org-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+
+  .org-title {
+    font-size: 12.5px;
+    color: var(--teal-light);
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .org-dept {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .org-dept .inst { font-weight: 700; color: rgba(255,255,255,0.9); }
+
+  .org-bio {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+
+  .research-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .rtag {
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(104,198,184,0.15);
+    border: 0.5px solid rgba(104,198,184,0.35);
+    color: var(--teal-light);
+    border-radius: 2px;
+    padding: 4px 10px;
+  }
+
+  .org-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    color: var(--teal-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(104,198,184,0.35);
+    padding-bottom: 1px;
+    margin-top: 14px;
+  }
+
+  .org-link:hover { color: #fff; border-color: #fff; }
+
+  /* ── TEAM & ADVISORS ──────────────────────────── */
+  .team-section {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 620px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+
+  .team-col h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--teal);
+  }
+
+  .team-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .team-list li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .team-list li:last-child { border-bottom: none; }
+
+  .team-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.3;
+  }
+
+  .team-dept {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── LOGISTICS ────────────────────────────────── */
+  .logistics-bg {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+  }
+
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .log-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green);
+    border-radius: 2px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--shadow);
+  }
+
+  .log-card h3 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .log-card p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  .footer {
+    background: var(--green-dark);
+    border-top: 3px solid var(--green);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--teal-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .footer p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+  }
+
+  .footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ═══ FIXED NAV ═══════════════════════════════════ -->
+<nav class="nav">
+  <!-- Left: UAB Medicine Core Logo with University Wordmark -->
+  <!-- Replace uabmedlogo.png with the Full Color logo downloaded from: -->
+  <!-- https://www.uab.edu/brandguide/uab-medicine/logo -->
+  <!-- Recommended: "Core Medicine Logo — Full Color, Horizontal, with University Wordmark" -->
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-img-wrap">
+      <img src="uabmedlogo.png" alt="UAB Medicine — University of Alabama at Birmingham"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <!-- Placeholder shown until uabmedlogo.png is uploaded to the repo -->
+      <div class="nav-logo-placeholder" style="display:none;">
+        <span class="logo-uab">UAB <span style="color:var(--teal);">Medicine</span></span>
+        <span class="logo-med">PLACE LOGO HERE</span>
+        <span class="logo-sub">University of Alabama at Birmingham</span>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-rsf-title">
+      <span class="rsf-abbr">RSF 2026</span>
+      <span class="rsf-year">Inaugural Symposium</span>
+    </div>
+  </a>
+
+  <!-- Right: navigation links -->
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#organizer">Organizer</a>
+    <a href="https://forms.gle/AeiPyGqHz619QA2Q6" target="_blank" class="nav-reg">Register</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Inaugural Forum &mdash; 2026</div>
+    <h1>Reductive Stress Mechanisms<br>in <em>Chronic Diseases</em></h1>
+    <p class="hero-sub">Reductive Stress Forum (RSF) Symposium &middot; University of Alabama at Birmingham</p>
+
+    <div class="event-strip">
+      <div class="strip-item">
+        <svg class="strip-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div><span class="strip-label">Date</span><span class="strip-val">Thursday, July 09, 2026</span></div>
+      </div>
+      <div class="strip-item">
+        <svg class="strip-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><span class="strip-label">Venue</span><span class="strip-val">Conference Room #201, Heersink Center, UAB</span></div>
+      </div>
+      <div class="strip-item">
+        <svg class="strip-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div><span class="strip-label">Program</span><span class="strip-val">7:30 AM &ndash; 5:15 PM</span></div>
+      </div>
+      <div class="strip-item">
+        <svg class="strip-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div><span class="strip-label">Host</span><span class="strip-val">UAB &mdash; Birmingham, Alabama</span></div>
+      </div>
+    </div>
+
+    <div class="countdown-wrap">
+      <div class="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-lbl">Days</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-lbl">Hours</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-lbl">Minutes</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-lbl">Seconds</span></div>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#agenda" class="btn-primary">View Agenda</a>
+      <a href="https://forms.gle/AeiPyGqHz619QA2Q6" target="_blank" class="btn-outline">Register Now</a>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:0.8rem;letter-spacing:0.3px;">
+      &#128197; <strong style="color:#68C6B8;">Abstract Submission Deadline:</strong> Monday, June 29, 2026
+    </p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ════════════════════════════════════════ -->
+<div id="about">
+  <div class="section">
+    <p class="sec-label">About the forum</p>
+    <h2 class="sec-title">A new scientific home for reductive stress biology</h2>
+    <p class="sec-body">The Reductive Stress Forum brings together leading scientists from diverse disciplines to advance our collective understanding of reductive stress biology and its implications for human health. This inaugural meeting — hosted at UAB's Marnix E. Heersink Conference Center — marks the establishment of a dedicated platform for rigorous scientific exchange on a fundamentally underexplored dimension of redox medicine.</p>
+
+    <div class="themes-grid">
+      <div class="theme-card">
+        <h3>Reductive Stress Mechanisms</h3>
+        <p>Cellular and molecular drivers including NAD(P)H accumulation, GSH/GSSG imbalance, and antioxidant pathway dysregulation.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Chronic Disease Intersections</h3>
+        <p>Role of reductive stress in cardiometabolic disorders, neurodegeneration, cancer biology, and aging-related pathologies.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Multi-Omics &amp; Redox Profiling</h3>
+        <p>Proteomics, metabolomics, and transcriptomics approaches for identifying reductive stress signatures in animal and clinical cohorts.</p>
+      </div>
+      <div class="theme-card">
+        <h3>Molecular Adaptations</h3>
+        <p>Protein modifications, signaling pathway rewiring, and gene expression changes that define adaptive and maladaptive responses.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ═══ AGENDA ═══════════════════════════════════════ -->
+<div id="agenda" class="agenda-bg">
+  <div class="section">
+    <p class="sec-label">Program</p>
+    <h2 class="sec-title">Meeting Agenda &mdash; July 09, 2026</h2>
+
+    <div class="agenda-wrap">
+
+      <!-- Morning / Opening -->
+      <div class="session-block">
+        <div class="session-hdr"><span class="session-pill">Morning</span></div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">7:30 &ndash; 8:30 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Continental Breakfast &amp; Registration</div>
+            <div class="agenda-speaker">Light breakfast and networking</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">8:30 &ndash; 8:40 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Welcome &amp; Opening Remarks</div>
+            <div class="agenda-speaker">Dr. Rajasekaran Namakkal-Soorappan &mdash; Founder, RSF</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">8:40 &ndash; 8:50 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Inaugural Address</div>
+            <div class="agenda-speaker">Dr. Rakesh P. Patel &mdash; Division Director, MCP</div>
+            <div class="agenda-talk">Discovery of Reductive Stress</div>
+            <div class="agenda-note">Introduced by Dr. Ivor J. Benjamin (Medical College of Wisconsin)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session I -->
+      <div class="session-block">
+        <div class="session-hdr">
+          <span class="session-pill">Session I</span>
+          <span class="session-mod">Moderator: Dr. Gregory A. Payne, Director, CCVC</span>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">8:50 &ndash; 9:10 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Dr. Victor Darley-Usmar</div>
+            <div class="agenda-speaker">University of Alabama at Birmingham</div>
+            <div class="agenda-talk">Can Reductive Stress Induce ROS?</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">9:10 &ndash; 9:30 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Chris Kevil, PhD</div>
+            <div class="agenda-speaker">LSU Health Shreveport</div>
+            <div class="agenda-talk">Reductive Stress and Sulfhydryl Biology in Health and Disease</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">9:30 &ndash; 10:15 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">&#11088; Keynote Lecture &mdash; Dr. Dean P. Jones</div>
+            <div class="agenda-speaker">Emory University</div>
+            <div class="agenda-talk">The Other Side of the Redox Coin &mdash; Heart and Lung Axis</div>
+          </div>
+        </div>
+
+        <div class="agenda-row break">
+          <span class="agenda-time">10:15 &ndash; 10:35 AM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">&#9749; Coffee Break / Networking</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session II -->
+      <div class="session-block">
+        <div class="session-hdr">
+          <span class="session-pill">Session II</span>
+          <span class="session-mod">TED-Style Early Career Talks &nbsp;&bull;&nbsp; Moderator: Dr. Sini Sunny, Department of Pathology, UAB</span>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">10:40 AM &ndash; 12:00 PM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">TED-Style Talks &mdash; Early Career, Postdocs &amp; Predoctoral Trainees</div>
+            <div class="agenda-speaker">6 talks &times; 10 minutes each (8-min presentation + 2-min Q&amp;A)</div>
+            <div class="agenda-note">Abstracts focusing on reductive stress mechanisms in various diseases selected for oral presentation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session III -->
+      <div class="session-block">
+        <div class="session-hdr">
+          <span class="session-pill">Session III</span>
+          <span class="session-mod">Lunch &amp; Poster Session</span>
+        </div>
+
+        <div class="agenda-row break">
+          <span class="agenda-time">12:00 &ndash; 1:30 PM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">&#127857; Lunch &amp; Poster Session</div>
+            <div class="agenda-speaker">Boxed lunch &middot; Up to 20 posters displayed</div>
+            <div class="agenda-note">Poster Organizer: Dr. Praveen Dubey</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session IV — Featured -->
+      <div class="featured-block">
+        <div class="feat-badge">&#9733; Session IV &mdash; Highlighted</div>
+        <div class="feat-title">Invited Faculty Presentations</div>
+        <div class="feat-time">1:30 &ndash; 4:10 PM &nbsp;&bull;&nbsp; Moderator: Dr. Priscila Sato</div>
+
+        <div class="faculty-list">
+
+          <div class="faculty-item">
+            <span class="fac-time">1:30 &ndash; 1:50 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Vinodkumar Bala, MD, PhD</div>
+              <div class="fac-inst">Associate Professor, Dept. of Cardiology &mdash; Sri Ramachandra University Medical Center, Chennai, India</div>
+              <div class="fac-talk">Redox stratification of Heart Failure patients and personalized antioxidant treatment</div>
+              <div class="fac-sponsor">&#9733; Sponsored by AHA International Visiting Professor Award</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">1:50 &ndash; 2:10 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Joel D. Trinity, PhD</div>
+              <div class="fac-inst">University of Utah</div>
+              <div class="fac-talk">Redox stratification of aging veterans with muscular and vascular dysfunction</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">2:10 &ndash; 2:30 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Sushma Reddy, MD</div>
+              <div class="fac-inst">Associate Professor &mdash; Stanford Medicine</div>
+              <div class="fac-talk">Redox stratification of pediatric Heart Failure patients</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">2:30 &ndash; 2:50 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Daniel A. Bachovchin, PhD</div>
+              <div class="fac-inst">Memorial Sloan Kettering Cancer Center, New York, NY</div>
+              <div class="fac-talk">Reductive stress in cancer &mdash; NLRP1 and CARD8 inflammasome activation induced by reductive stress</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">2:50 &ndash; 3:00 PM</span>
+            <div class="fac-details">
+              <div class="fac-name" style="color:var(--text-muted);font-weight:400;">&#9749; Break</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">3:00 &ndash; 3:20 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Thomas Vondriska, PhD</div>
+              <div class="fac-inst">David Geffen School of Medicine, UCLA</div>
+              <div class="fac-talk">Redox regulation of epigenetics</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">3:20 &ndash; 3:50 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Liang-Jun Yan, PhD</div>
+              <div class="fac-inst">Professor, Pharmaceutical Sciences, UNT System College of Pharmacy &mdash; University of North Texas Health Science Center</div>
+              <div class="fac-talk">Mitochondrial oxidative stress, redox dysregulation, and aging-related metabolic disorders</div>
+            </div>
+          </div>
+
+          <div class="faculty-item">
+            <span class="fac-time">3:50 &ndash; 4:10 PM</span>
+            <div class="fac-details">
+              <div class="fac-name">Dr. Maolin Ge, PhD</div>
+              <div class="fac-inst">Massachusetts General Hospital / Harvard Medical School</div>
+              <div class="fac-talk">Reductive stress in mitochondrial function</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Session V -->
+      <div class="session-block">
+        <div class="session-hdr">
+          <span class="session-pill">Session V</span>
+          <span class="session-mod">Panel Discussion &amp; Closing</span>
+        </div>
+
+        <div class="agenda-row break">
+          <span class="agenda-time">4:10 &ndash; 4:20 PM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">&#9749; Coffee / Snack Break</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">4:20 &ndash; 5:00 PM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Panel Discussion</div>
+            <div class="agenda-speaker">Moderators: Dr. Victor Darley-Usmar &amp; Dr. Rajasekaran Namakkal-Soorappan</div>
+            <div class="agenda-talk">What is the future of reductive stress? &bull; Establishing Reductive Stress Collaborations</div>
+            <div class="agenda-note">Panel: All speakers &amp; faculty</div>
+          </div>
+        </div>
+
+        <div class="agenda-row">
+          <span class="agenda-time">5:00 &ndash; 5:15 PM</span>
+          <div class="agenda-content">
+            <div class="agenda-event">Closing Remarks</div>
+            <div class="agenda-speaker">Dr. Rajasekaran Namakkal-Soorappan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logistics note -->
+      <div style="margin-top:1rem; padding:0.9rem 1.1rem; background:#fff; border:1px solid var(--border); border-left:4px solid var(--teal); border-radius:2px; font-size:12px; color:var(--text-muted); line-height:1.7;">
+        <strong style="color:var(--text-mid);">Symposium team:</strong>
+        Communication &amp; Hospitality — Dr. Anil Kumar Challa &amp; Dr. Sini Sunny &nbsp;&bull;&nbsp;
+        Poster Organizer — Dr. Praveen Dubey
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ REGISTRATION BANNER ══════════════════════════ -->
+<div class="reg-banner">
+  <div class="reg-inner">
+    <div class="reg-text">
+      <h3>Register for RSF 2026</h3>
+      <p>Attendance is open to researchers, clinicians, and trainees with an interest in redox biology and reductive stress. Register via Google Form to secure your place at this inaugural meeting.</p>
+    </div>
+    <div style="text-align:center;">
+      <a href="https://forms.gle/AeiPyGqHz619QA2Q6" target="_blank" class="reg-btn">Register Now &rarr;</a>
+      <p style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:0.7rem;">&#128197; <strong style="color:#68C6B8;">Abstract Submission Deadline:</strong> Monday, June 29, 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SPEAKERS ═════════════════════════════════════ -->
+<div id="speakers" class="speakers-bg">
+  <div class="section">
+    <p class="sec-label">Speakers</p>
+    <h2 class="sec-title">Invited speakers</h2>
+
+    <div class="speakers-grid">
+
+      <!-- 1. Dean P. Jones — Keynote -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="jones.png" alt="Dean P. Jones"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>DJ</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Dean P. Jones, PhD</div>
+          <div class="spk-role">Keynote Speaker &mdash; Professor of Medicine</div>
+          <div class="spk-affil">
+            Division of Pulmonary, Allergy, Critical Care &amp; Sleep Medicine<br>
+            Director, Clinical Biomarkers Laboratory<br>
+            <span class="inst">Emory University School of Medicine</span>
+          </div>
+          <span class="spk-tag">Redox Metabolomics &amp; Systems Biology</span>
+        </div>
+      </div>
+
+      <!-- 2. Rakesh P. Patel — Inaugural Address -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="patel.png" alt="Rakesh P. Patel"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>RP</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Rakesh P. Patel, PhD</div>
+          <div class="spk-role">Inaugural Address &mdash; Professor &amp; Division Director, MCP</div>
+          <div class="spk-affil">
+            Victor Darley-Usmar, Ph.D., Endowed Professor in Pathology<br>
+            Director, Center for Free Radical Biology<br>
+            Division of Molecular &amp; Cellular Pathology<br>
+            <span class="inst">Department of Pathology, University of Alabama at Birmingham</span>
+          </div>
+          <span class="spk-tag">Free Radical Biology &amp; Redox Signaling</span>
+        </div>
+      </div>
+
+      <!-- 3. Victor Darley-Usmar -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="darley.png" alt="Victor Darley-Usmar"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>VD</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Victor Darley-Usmar, PhD</div>
+          <div class="spk-role">Professor &amp; Director, Mitochondrial Medicine Laboratory</div>
+          <div class="spk-affil">
+            Marion S. Hull Endowed Chair in Pathology<br>
+            Department of Pathology<br>
+            <span class="inst">University of Alabama at Birmingham</span>
+          </div>
+          <span class="spk-tag">Mitochondrial Biology &amp; Redox</span>
+        </div>
+      </div>
+
+      <!-- 3. Ivor J. Benjamin -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="benjamin.png" alt="Ivor J. Benjamin"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>IB</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Ivor J. Benjamin, MD</div>
+          <div class="spk-role">Professor of Medicine &amp; Physiology</div>
+          <div class="spk-affil">
+            Director, Cardiovascular Center<br>
+            <span class="inst">Medical College of Wisconsin</span>
+          </div>
+          <span class="spk-tag">Proteotoxic Cardiac Disease</span>
+        </div>
+      </div>
+
+      <!-- 4. Vinod Kumar B -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="vinod.png" alt="Vinod Kumar B"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>VK</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Vinod Kumar B, MD, DM</div>
+          <div class="spk-role">Sr. Consultant Interventional Cardiologist</div>
+          <div class="spk-affil">
+            Fellowship in Intravascular Imaging (South Korea)<br>
+            FESC &middot; FSCAI &middot; FACC<br>
+            Associate Professor &amp; Program Coordinator, Allied Health Sciences<br>
+            <span class="inst">Dept. of Cardiology, SRIHER</span> &middot; Chennai, India<br>
+            <span style="color:var(--teal);font-size:11px;">Managing Trustee, C3 Research Foundation &middot; MD, Chennai Cardiac Care</span>
+          </div>
+          <span class="spk-tag">Interventional Cardiology</span>
+        </div>
+      </div>
+
+      <!-- 5. Chris Kevil -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="chris.png" alt="Chris Kevil"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>CK</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Chris Kevil, PhD</div>
+          <div class="spk-role">Malcolm Feist Endowed Chair, Cardiovascular Disease</div>
+          <div class="spk-affil">
+            F-AAAS &middot; F-SfRBM &middot; F-CVS<br>
+            Co-Editor in Chief, <em>Redox Biology</em><br>
+            Director/PI, Center for Redox Biology and Cardiovascular Disease<br>
+            Professor, Pathology, Molecular &amp; Cellular Physiology, Cell Biology<br>
+            <span class="inst">LSU Health Shreveport</span>
+          </div>
+          <span class="spk-tag">Redox Biology &amp; Cardiovascular</span>
+        </div>
+      </div>
+
+      <!-- 6. Joel D. Trinity -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="trinity.png" alt="Joel D. Trinity"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>JT</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Joel D. Trinity, PhD</div>
+          <div class="spk-role">Associate Professor of Internal Medicine</div>
+          <div class="spk-affil">
+            Adjunct Assistant Professor, Nutrition &amp; Integrative Physiology<br>
+            Division of Geriatrics<br>
+            <span class="inst">Spencer Fox Eccles School of Medicine, University of Utah</span><br>
+            George E. Whalen VA Medical Center
+          </div>
+          <span class="spk-tag">Vascular Physiology &amp; Redox</span>
+        </div>
+      </div>
+
+      <!-- 7. Sushma Reddy -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="sushma.png" alt="Sushma Reddy"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>SR</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Sushma Reddy, MD</div>
+          <div class="spk-role">Associate Professor of Pediatrics (Cardiology)</div>
+          <div class="spk-affil">
+            Research Director, Cardiovascular Intensive Care<br>
+            Director, Pediatric Heart Center Biobank<br>
+            <span class="inst">Stanford Medicine &mdash; Lucile Packard Children's Hospital</span><br>
+            Anne T. and Robert M. Bass Faculty Scholar, MCHRI
+          </div>
+          <span class="spk-tag">Pediatric Cardiology &amp; Heart Failure</span>
+        </div>
+      </div>
+
+      <!-- 8. Thomas Vondriska -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="vondriska.png" alt="Thomas Vondriska"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>TV</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Thomas Vondriska, PhD</div>
+          <div class="spk-role">Professor, Anesthesiology, Medicine &amp; Physiology</div>
+          <div class="spk-affil">
+            <span class="inst">David Geffen School of Medicine, UCLA</span><br>
+            Departments of Anesthesiology &amp; Perioperative Medicine and Physiology
+          </div>
+          <span class="spk-tag">Epigenomics &amp; Cardiovascular</span>
+        </div>
+      </div>
+
+      <!-- 9. Liang-Jun Yan -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="yan.png" alt="Liang-Jun Yan"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>LY</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Liang-Jun Yan, PhD</div>
+          <div class="spk-role">Professor, Pharmaceutical Sciences</div>
+          <div class="spk-affil">
+            UNT System College of Pharmacy<br>
+            <span class="inst">University of North Texas Health Science Center</span>
+          </div>
+          <span class="spk-tag">Mitochondrial Redox &amp; Aging</span>
+        </div>
+      </div>
+
+      <!-- 10. Daniel Bachovchin -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="bachovchin.png" alt="Daniel Bachovchin"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>DB</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Daniel A. Bachovchin, PhD</div>
+          <div class="spk-role">Chemical Biology Program</div>
+          <div class="spk-affil">
+            Geoffrey Beene Junior Faculty Chair<br>
+            <span class="inst">Memorial Sloan Kettering Cancer Center</span><br>
+            1275 York Ave, Box 428 &middot; New York, NY 10065
+          </div>
+          <span class="spk-tag">Chemical Biology</span>
+        </div>
+      </div>
+
+      <!-- 10. Maolin Ge — moved to end -->
+      <div class="spk-card">
+        <div class="spk-photo-wrap">
+          <img src="mao.png" alt="Maolin Ge"
+            onerror="this.parentNode.innerHTML='<div class=\'avatar-circle\'><span class=\'initials\'>MG</span><span class=\'av-hint\'>photo</span></div>'">
+        </div>
+        <div class="spk-body">
+          <div class="spk-name">Maolin Ge, PhD</div>
+          <div class="spk-role">Instructor in Medicine</div>
+          <div class="spk-affil">
+            <span class="inst">Krantz Family Center for Cancer Research</span><br>
+            Massachusetts General Hospital &middot; Harvard Medical School<br>
+            <span style="color:var(--teal);font-size:11px;">Dr. Liron Bar-Peled Lab</span>
+          </div>
+          <span class="spk-tag">Cancer Biology &amp; Chemical Biology</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ORGANIZER ════════════════════════════════════ -->
+<div id="organizer" class="organizer-bg">
+  <div class="section">
+    <p class="sec-label" style="color:var(--teal-light);">Forum organizer</p>
+    <h2 class="sec-title" style="color:#fff;">About the founder</h2>
+    <div class="organizer-card">
+      <div class="org-photo">
+        <img src="nsr.png" alt="Rajasekaran Namakkal-Soorappan"
+          onerror="this.parentNode.style.background='rgba(104,198,184,0.15)'; this.parentNode.style.display='flex'; this.parentNode.style.alignItems='center'; this.parentNode.style.justifyContent='center'; this.outerHTML='<span style=\'font-size:44px;font-weight:700;color:var(--teal-light);\'>RN</span>'">
+      </div>
+      <div class="org-info">
+        <div class="org-name">Rajasekaran Namakkal-Soorappan, PhD</div>
+        <div class="org-title">Associate Professor &amp; Founder, Reductive Stress Forum</div>
+        <div class="org-dept">
+          Cardiac Aging and Redox Signaling Laboratory &middot; Center for Free Radical Biology<br>
+          Division of Molecular and Cellular Pathology<br>
+          <span class="inst">Department of Pathology, University of Alabama at Birmingham</span><br>
+          Adjunct Faculty, Division of Cardiovascular Medicine, University of Utah
+        </div>
+        <div class="org-bio">
+          Dr. Namakkal-Soorappan is a leading authority on reductive stress biology, recognized for establishing reductive stress as a distinct and clinically significant arm of the redox spectrum. His laboratory investigates how excess reducing equivalents &mdash; driven by overactivation of the Nrf2/antioxidant defense axis &mdash; cause proteotoxic cardiomyopathy, diastolic dysfunction, impaired myogenesis, and neurodegeneration. He convened the landmark <em>Antioxidants &amp; Redox Signaling</em> forum issue &ldquo;Reductive Stress: Neglected Science,&rdquo; catalyzing field-wide attention to this underexplored biology.
+        </div>
+        <div class="research-tags">
+          <span class="rtag">Reductive stress</span>
+          <span class="rtag">Nrf2/ARE signaling</span>
+          <span class="rtag">Cardiac redox biology</span>
+          <span class="rtag">Proteotoxic cardiomyopathy</span>
+          <span class="rtag">Redox &amp; neurodegeneration</span>
+          <span class="rtag">Multi-omics &amp; proteomics</span>
+        </div>
+        <a href="https://sites.uab.edu/nsrajalab/" class="org-link" target="_blank">NS Raja Lab, UAB &#8599;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TEAM & ADVISORS ══════════════════════════════ -->
+<div class="team-section">
+  <div class="section">
+    <p class="sec-label">RSF 2026</p>
+    <h2 class="sec-title">Organizing Committee</h2>
+
+    <div class="team-grid">
+
+      <!-- Column 1: UAB Core Team -->
+      <div class="team-col">
+        <h3>Department of Pathology</h3>
+        <ul class="team-list">
+          <li>
+            <span class="team-name">Rajasekaran Namakkal-Soorappan, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Victor Darley-Usmar, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Rakesh Patel, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Scott Ballinger, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Jianhua Zhang, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Sini Sunny, PhD</span>
+            <span class="team-dept">Pathology, University of Alabama at Birmingham</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Advisors -->
+      <div class="team-col">
+        <h3>Advisors</h3>
+        <ul class="team-list">
+          <li>
+            <span class="team-name">Dean P. Jones, PhD</span>
+            <span class="team-dept">Emory University</span>
+          </li>
+          <li>
+            <span class="team-name">Gregory A. Payne, MD</span>
+            <span class="team-dept">Medicine, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Steven M. Pogwizd, MD</span>
+            <span class="team-dept">Medicine, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Silvio H. Litovsky, MD</span>
+            <span class="team-dept">Medicine, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Matthew Might, PhD</span>
+            <span class="team-dept">Medicine, University of Alabama at Birmingham</span>
+          </li>
+          <li>
+            <span class="team-name">Praveen Kumar Dubey, PhD</span>
+            <span class="team-dept">Anesthesiology, University of Alabama at Birmingham</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOGISTICS ════════════════════════════════════ -->
+<div class="logistics-bg">
+  <div class="section">
+    <p class="sec-label">Logistics</p>
+    <h2 class="sec-title">Practical information</h2>
+    <div class="logistics-grid">
+      <div class="log-card">
+        <h3>Venue</h3>
+        <p>Conference Room #201<br>Marnix E. Heersink Conference Center<br>University of Alabama at Birmingham<br>Birmingham, Alabama</p>
+      </div>
+      <div class="log-card">
+        <h3>Program Hours</h3>
+        <p>Registration &amp; Breakfast: 7:30 AM<br>Opening Remarks: 8:30 AM<br>Closing Remarks: 5:00 &ndash; 5:15 PM</p>
+      </div>
+      <div class="log-card">
+        <h3>Registration</h3>
+        <p>Free and open to researchers, clinicians, and trainees.<br>Register via Google Form to confirm attendance.</p>
+      </div>
+      <div class="log-card">
+        <h3>Logistics</h3>
+        <p>Communication &amp; Hospitality:<br>Dr. Anil Kumar Challa &amp; Dr. Sini Sunny<br><br>Poster Organizer:<br>Dr. Praveen Dubey</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════ -->
+<div class="footer">
+  <span class="footer-logo">Reductive Stress Forum &mdash; RSF 2026</span>
+  <p>Inaugural Symposium &middot; July 09, 2026</p>
+  <p style="margin-top:6px;"><strong style="color:rgba(255,255,255,0.7);">Conference Room #201, Marnix E. Heersink Conference Center</strong><br>University of Alabama at Birmingham, Birmingham, Alabama</p>
+  <p style="margin-top:1rem;">
+    <a href="https://forms.gle/AeiPyGqHz619QA2Q6" target="_blank">Register via Google Form &#8599;</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://sites.uab.edu/nsrajalab/" target="_blank">NS Raja Lab &#8599;</a>
+  </p>
+  <p style="margin-top:1.2rem; font-size:11px; color:rgba(255,255,255,0.25);">
+    Hosted at the University of Alabama at Birmingham &middot; UAB Medicine Brand Colors &amp; Fonts applied per UAB Brand Guide
+  </p>
+</div>
+
+<script>
+  function updateCountdown() {
+    var target = new Date('2026-07-09T08:00:00');
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent  = '0';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent  = '00';
+      document.getElementById('cd-secs').textContent  = '00';
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000)  / 60000);
+    var secs  = Math.floor((diff % 60000)    / 1000);
+    document.getElementById('cd-days').textContent  = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
